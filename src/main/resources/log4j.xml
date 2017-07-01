@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[markmoney] [%5p] [%d{yyyy-MM-dd HH:mm:ss SSS}] [%t] (%F:%L) %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <param name="File" value="/home/le/Logs/markmoney/markmoney.log"/> <!-- 日志路径，根据实际情况修改 -->
+        <param name="MaxFileSize" value="1024MB"/> <!-- 单个日志最大1024MB -->
+        <param name="MaxBackupIndex" value="50"/> <!-- 最多保留50个日志 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%5p] [%d{yyyy-MM-dd HH:mm:ss SSS}] [%t] (%F:%L) %m%n"/>
+        </layout>
+    </appender>
+
+    <category name="org.apache.velocity" additivity="true">
+		<priority value="${log4j.priority}"/>
+		<appender-ref ref="CONSOLE"/>
+	</category>
+	
+    <root>
+        <priority value="${log4j.priority}"/>      <!-- 根据实际情况修改日志级别，一般线上是INFO以上 -->
+        <appender-ref ref="CONSOLE"/> <!-- 该appender需要在上线时删除，以免输出重复的日志到catalina.out文件 -->
+        <appender-ref ref="FILE"/>
+    </root>
+</log4j:configuration>

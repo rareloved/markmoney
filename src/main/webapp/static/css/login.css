@@ -1,0 +1,105 @@
+html,body,form,ul{
+  margin:0;
+  padding:0;
+}
+html,body{
+  width:100%;
+  height:100%;
+}
+body{
+  background:#6eaef3 url(../images/bg.jpg) left bottom repeat-x;
+  font-family: 'Microsoft Yahei';
+  font-size:14px;
+}
+.top{
+   width:100%;
+   height:105px;
+   background-color:#f1f1f1;
+}
+.top .logo{
+   width:1200px;
+   height:100%;
+   margin:0 auto;
+}
+.top .logo img{
+  width:361px;
+  height:47px;
+  margin-top:22px;
+}
+
+.container{
+  width:1200px;
+  min-height:400px;
+  margin:0 auto;
+  background: url(../images/cloud.png) left bottom no-repeat;
+}
+.formwrapper{
+  background: url(../images/login-pic.png) left center no-repeat;
+  overflow: hidden;
+  height: 100%;
+  min-height: 250px;
+}
+.form{
+    width: 403px;
+    height: 284px;
+    background-color: white;
+    border-radius: 2px;
+    margin: 76px 0 0 667px;
+}
+.form .ipt{
+  border: 1px solid #f0f0f0;
+  height: 48px;
+  box-sizing: border-box;
+  width: 356px;
+  margin: 0 auto;
+  display: block;
+  padding: 0 30px 0 19px;
+  font-family: 'Microsoft Yahei';
+}
+#systemLoginName{
+  background: #f9f9f9 url(../images/headpic.png) 325px center no-repeat;
+}
+#password{
+  background: #f9f9f9 url(../images/pass.png) 325px center no-repeat;
+}
+.form p{
+  margin:19px 0;
+}
+.form .top-tip{
+  border-bottom: 2px solid #eeeeee;
+  padding: 8px 23px;
+}
+.form .tip{
+  color: #F79B26;
+  margin-left: 10px;
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+}
+.form .title{
+  color: #3ea0e8;
+  font-size: 34px;
+}
+#submit_btn{
+  background-color: #3ea0e8;
+  border: none;
+  color: white;
+  width: 359px;
+  height: 41px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 2px;
+  font-size: 18px;
+}
+
+.footer{
+  height:66px;
+  text-align:center;
+  background-color:#383737;
+  overflow: hidden;
+}
+.footer p{
+  color:white;
+  margin-top: 22px;
+}

@@ -1,0 +1,53 @@
+<div class="page-div clearfix" data-currentpageno="$!{currentPageNo}" data-totalpagecount="$!{totalPageCount}" data-pagesize="$!{pageSize}" data-totalcount="$!{totalCount}">
+   #if($!{totalCount}<=0)
+    	<p style='width:100%;text-align:center;'>没有数据</p>
+    #else
+	<!--page info -->
+	<div class="dataTables_info js-pager-info">
+		第<span class="currentNumber">$!{currentPageNo}</span>页 共<span
+			class="pageCount">$!{totalPageCount}</span>页 共<span class="totalCount">$!{totalCount}</span>条 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input class="goPage" type="text"  style="width: 80px; height: 25px;"
+					placeholder="请输入页码" /><a #if($!{totalPageCount}) href="javascript: void(0)" #end class="jump">&nbsp;跳转</a>
+	</div>
+	<!--page info end -->
+	
+	<!--go to page -->
+	<div class="dataTables_paginate pagination">
+		<ul class="js-pager-list">
+			<li><a #if($!{currentPageNo}!=1
+				&& $!{currentPageNo}!=0) href="javascript: void(0);"
+				#end class="first">首页</a></li>
+			<li><a #if($!{currentPageNo}!=1
+				&& $!{currentPageNo}!=0)
+				href="javascript: void(0);" #end class="prev">上页</a></li>
+			<li><a #if($!{currentPageNo}!=$!{totalPageCount})
+				href="javascript: void(0);" #end class="next">下页</a></li>
+			<li><a #if($!{currentPageNo}!=$!{totalPageCount})
+				href="javascript: void(0);" #end class="last">末页</a></li>
+		</ul>
+	</div>
+	<!--go to page end-->
+	
+	<!--every page size -->
+	<div class="dataTables_length">
+		<label>每页显示：</label>
+			<select class="js-display-count pageSize" style="width: 60px;">
+			<option value="5" #if($!{pageSize}==5) selected="selected"
+				#end>5</option>
+			<option value="10" #if($!{pageSize}==10) selected="selected"
+				#end>10</option>
+			<option value="15" #if($!{pageSize}==15) selected="selected"
+				#end>15</option>
+			<option value="20" #if($!{pageSize}==20) selected="selected"
+				#end>20</option>
+                <option value="100" #if($!{pageSize}==100) selected="selected"
+				#end>100
+                </option>
+                <option value="500" #if($!{pageSize}==500) selected="selected"
+				#end>500
+                </option>
+		</select>
+	</div>
+	#end
+	<!--every page size end-->
+</div>

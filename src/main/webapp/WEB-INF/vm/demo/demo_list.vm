@@ -1,0 +1,28 @@
+<!-- 支付（兑付）已申请列表 -->
+<table cellpadding="0" cellspacing="0" class="table">
+    <thead>
+    <tr>
+        <th>身份证号码</th>
+        <th>姓名</th>
+        <th>地址</th>
+        <th>年龄</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        #foreach($demo in $dataList)
+        <tr>
+            <td>$!demo.sfzh</td>
+            <td>$!demo.name</td>
+            <td>$!demo.address</td>
+            <td>$!demo.age</td>
+            <td>
+                <div class="operate"><a href="javascript:void(0);" class="projectDetail_btn">详细</a>
+                </div>
+            </td>
+        </tr>
+        #end
+    </tbody>
+</table>
+#parse("/common/pagebar.vm")
+<div class="clear"></div>

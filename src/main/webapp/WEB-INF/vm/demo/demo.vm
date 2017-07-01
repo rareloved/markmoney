@@ -1,0 +1,96 @@
+<!-- 支付（兑付）列表 -->
+<!doctype html>
+<html>
+<head>
+    #parse("/common/common_inc.vm")
+    <script type="text/javascript" data-main="$!{rc.contextPath}/static/js/service/demo/demo.js" src="$!{rc.contextPath}/static/js/modules/require.js"></script>
+    <script>var paycashType = '$!paycashType';</script>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <h1 class="local_area">用户列表demo>page示例</h1>
+        <div class="tab mar20">
+            <div class="tab_title"><a href="#" class="tab_hover">待申请</a><a href="#">已申请</a></div>
+            <div class="tab_cnt tab_ing">
+                <div class="search border">
+                    <div class="s_one">
+                        <label for="">身份证号</label>
+                        <input type="text" class="inpt sfzh"/>
+                    </div>
+##                    <div class="s_one">
+##                        <label for="">到期日</label>
+##                        <div class="s_date">
+##                            <input type="text" class="inpt w100 dateOfExpiryStart" readonly
+##                                   onclick="new Calendar().show(this);"/>
+##                            <span>————</span>
+##                            <input type="text" class="inpt w100 dateOfExpiryEnd" readonly
+##                                   onclick="new Calendar().show(this);">
+##                        </div>
+##                    </div>
+                    <div class="s_btn querying_btn">查询</div>
+                </div>
+                <!-- search end -->
+                <div class="tablebox mar20" id="ing-list">
+
+                </div>
+                <!-- tablebox end -->
+            </div>
+            <!--  tab_cnt end -->
+            <div class="tab_cnt tab_ed" style="display:none;">
+                <div class="search border">
+                    <div class="s_one">
+                        <label for="">项目名称</label>
+                        <input type="text" class="inpt projectName"/>
+                    </div>
+                    <div class="s_one">
+                        <label for="">支付审批状态</label>
+                        <select class="s_select payAuditStatus">
+                            <option value="">请选择</option>
+                            <option value="400">支付待初审</option>
+                            <option value="-400">支付初审不通过</option>
+                            <option value="500">支付待复审</option>
+                            <option value="-500">支付复审不通过</option>
+                            <option value="600">支付财务待复核</option>
+                            <option value="-600">支付财务复核不通过</option>
+                            <option value="700">支付财务复核通过</option>
+                        </select>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="s_one">
+                        <label for="">项目状态</label>
+                        <select class="s_select projectStatus">
+                            <option value="" selected="">请选择</option>
+                            <option value="8">计息中</option>
+                            <option value="9">已到期</option>
+                            <option value="10">回款中</option>
+                            <option value="11">回款完成</option>
+                        </select>
+                    </div>
+                    <div class="s_one">
+                        <label for="">到期日</label>
+                        <div class="s_date">
+                            <input type="text" class="inpt w100 dateOfExpiryStart" readonly
+                                   onclick="new Calendar().show(this);"/>
+                            <span>————</span>
+                            <input type="text" class="inpt w100 dateOfExpiryEnd" readonly
+                                   onclick="new Calendar().show(this);">
+                        </div>
+                    </div>
+                    <div class="s_btn queryed_btn">查询</div>
+                </div>
+                <!-- search end -->
+                <div class="tablebox mar20" id="ed-list">
+
+                </div>
+                <!-- tablebox end -->
+            </div>
+            <!--  tab_cnt end -->
+        </div>
+        <!--  tab end -->
+    </div>
+    <!-- content end -->
+</div>
+<!-- container end -->
+</body>
+</html>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bt.but.ctypechange.mapper.UKBNOVCTCOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+    <result column="REQUESTID" property="requestid" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="STARTINGDATE" property="startingdate" jdbcType="TIMESTAMP" />
+    <result column="LOSINGBAC" property="losingbac" jdbcType="VARCHAR" />
+    <result column="ONEBILLACCOUNT" property="onebillaccount" jdbcType="VARCHAR" />
+    <result column="GAININGCUGID" property="gainingcugid" jdbcType="VARCHAR" />
+    <result column="GAININGLECODE" property="gaininglecode" jdbcType="VARCHAR" />
+    <result column="GAININGLENAME" property="gaininglename" jdbcType="VARCHAR" />
+    <result column="GAININGBACNAME" property="gainingbacname" jdbcType="VARCHAR" />
+    <result column="EFFECTIVEDATE" property="effectivedate" jdbcType="VARCHAR" />
+    <result column="BILLINGADDRESS" property="billingaddress" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="StatusCountMap" type="com.bt.but.ctypechange.mapper.StatusCount" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="FLAG" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, REQUESTID, STATUS, STARTINGDATE, LOSINGBAC, ONEBILLACCOUNT, GAININGCUGID, GAININGLECODE, 
+    GAININGLENAME, GAININGBACNAME, EFFECTIVEDATE, BILLINGADDRESS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from UKBNOVCTCORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrderExample" >
+    delete from UKBNOVCTCORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+  	<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+        SELECT NB_UKBNOVCTC_REQUESTID.NEXTVAL FROM DUAL 
+    </selectKey>
+    insert into UKBNOVCTCORDER (ID,REQUESTID, STATUS, 
+      STARTINGDATE, LOSINGBAC, ONEBILLACCOUNT, 
+      GAININGCUGID, GAININGLECODE, GAININGLENAME, 
+      GAININGBACNAME, EFFECTIVEDATE, BILLINGADDRESS
+      )
+    values (#{id,jdbcType=VARCHAR},#{requestid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{startingdate,jdbcType=TIMESTAMP}, #{losingbac,jdbcType=VARCHAR}, #{onebillaccount,jdbcType=VARCHAR}, 
+      #{gainingcugid,jdbcType=VARCHAR}, #{gaininglecode,jdbcType=VARCHAR}, #{gaininglename,jdbcType=VARCHAR}, 
+      #{gainingbacname,jdbcType=VARCHAR}, #{effectivedate,jdbcType=VARCHAR}, #{billingaddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+    insert into UKBNOVCTCORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="requestid != null" >
+        REQUESTID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="startingdate != null" >
+        STARTINGDATE,
+      </if>
+      <if test="losingbac != null" >
+        LOSINGBAC,
+      </if>
+      <if test="onebillaccount != null" >
+        ONEBILLACCOUNT,
+      </if>
+      <if test="gainingcugid != null" >
+        GAININGCUGID,
+      </if>
+      <if test="gaininglecode != null" >
+        GAININGLECODE,
+      </if>
+      <if test="gaininglename != null" >
+        GAININGLENAME,
+      </if>
+      <if test="gainingbacname != null" >
+        GAININGBACNAME,
+      </if>
+      <if test="effectivedate != null" >
+        EFFECTIVEDATE,
+      </if>
+      <if test="billingaddress != null" >
+        BILLINGADDRESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="requestid != null" >
+        #{requestid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startingdate != null" >
+        #{startingdate,jdbcType=DATE},
+      </if>
+      <if test="losingbac != null" >
+        #{losingbac,jdbcType=VARCHAR},
+      </if>
+      <if test="onebillaccount != null" >
+        #{onebillaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="gainingcugid != null" >
+        #{gainingcugid,jdbcType=VARCHAR},
+      </if>
+      <if test="gaininglecode != null" >
+        #{gaininglecode,jdbcType=VARCHAR},
+      </if>
+      <if test="gaininglename != null" >
+        #{gaininglename,jdbcType=VARCHAR},
+      </if>
+      <if test="gainingbacname != null" >
+        #{gainingbacname,jdbcType=VARCHAR},
+      </if>
+      <if test="effectivedate != null" >
+        #{effectivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="billingaddress != null" >
+        #{billingaddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrderExample" resultType="java.lang.Integer" >
+    select count(*) from UKBNOVCTCORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update UKBNOVCTCORDER
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestid != null" >
+        REQUESTID = #{record.requestid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startingdate != null" >
+        STARTINGDATE = #{record.startingdate,jdbcType=DATE},
+      </if>
+      <if test="record.losingbac != null" >
+        LOSINGBAC = #{record.losingbac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onebillaccount != null" >
+        ONEBILLACCOUNT = #{record.onebillaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gainingcugid != null" >
+        GAININGCUGID = #{record.gainingcugid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gaininglecode != null" >
+        GAININGLECODE = #{record.gaininglecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gaininglename != null" >
+        GAININGLENAME = #{record.gaininglename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gainingbacname != null" >
+        GAININGBACNAME = #{record.gainingbacname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effectivedate != null" >
+        EFFECTIVEDATE = #{record.effectivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billingaddress != null" >
+        BILLINGADDRESS = #{record.billingaddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update UKBNOVCTCORDER
+    set ID = #{record.id,jdbcType=VARCHAR},
+      REQUESTID = #{record.requestid,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      STARTINGDATE = #{record.startingdate,jdbcType=DATE},
+      LOSINGBAC = #{record.losingbac,jdbcType=VARCHAR},
+      ONEBILLACCOUNT = #{record.onebillaccount,jdbcType=VARCHAR},
+      GAININGCUGID = #{record.gainingcugid,jdbcType=VARCHAR},
+      GAININGLECODE = #{record.gaininglecode,jdbcType=VARCHAR},
+      GAININGLENAME = #{record.gaininglename,jdbcType=VARCHAR},
+      GAININGBACNAME = #{record.gainingbacname,jdbcType=VARCHAR},
+      EFFECTIVEDATE = #{record.effectivedate,jdbcType=VARCHAR},
+      BILLINGADDRESS = #{record.billingaddress,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateStatusByID" parameterType="map" >
+  	update UKBNOVCTCORDER set status = #{status,jdbcType=VARCHAR} 
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>	
+   
+  <select id="selectByReqID" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UKBNOVCTCORDER
+    where REQUESTID = #{reqID,jdbcType=VARCHAR} order by ID asc
+  </select>
+  
+  <select id="selectByStatus" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UKBNOVCTCORDER
+    where STATUS = #{status,jdbcType=VARCHAR} order by REQUESTID asc
+  </select>
+  
+  
+  <select id="selectFailedRecByReqID" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UKBNOVCTCORDER
+    where REQUESTID = #{reqID,jdbcType=VARCHAR} and status='200'
+  </select>
+  
+   <select id="selectNonFailedRecByReqID" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UKBNOVCTCORDER
+    where REQUESTID = #{reqID,jdbcType=VARCHAR} and status!='200' order by status asc
+  </select>
+  
+  
+  <select id="selectCountByReqID" resultMap="StatusCountMap" parameterType="String">
+    select count(status) NUM,'FAILED' FLAG from UKBNOVCTCORDER where status='200' and REQUESTID = #{reqID,jdbcType=VARCHAR}
+	union 
+	select count(status),'OTHER' from UKBNOVCTCORDER where status!='200' and REQUESTID = #{reqID,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="getRequestIdFromSeq" resultType="java.lang.String" >
+    SELECT NB_UKBNOVATION_REQUESTID.NEXTVAL FROM DUAL
+  </select> 
+</mapper>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="$!{rc.contextPath}/static/css/login.css">
+    <script type="text/javascript" src="$!{rc.contextPath}/static/js/modules/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+
+<div class="top">
+    <h1 class="logo">
+        <img src="$!{rc.contextPath}/static/images/login-logo.png" alt="记账平台">
+    </h1>
+</div>
+
+<div class="container" style="display: none;">
+    <div class="formwrapper">
+
+        <form class="form" action="$!{rc.contextPath}/login" method="post">
+            <p class="top-tip">
+                <span class="title">登录</span>
+                <span class="tip">$!{message}</span>
+            </p>
+            <p>
+                <input type="text" placeholder="用户名" class="ipt" id="userName" name="userName"/>
+            </p>
+            <p>
+                <input type="password" placeholder="密码" class="ipt" id="password" name="password"/>
+            </p>
+            <p>
+                <input type="button" id="submit_btn" value="登录" />
+            </p>
+        </form>
+    </div>
+</div>
+
+<div class="footer" style="display: none;">
+    <p>andy 版权所有 @2017</p>
+</div>
+<script type="text/javascript">
+    $(window).on("resize", function(){
+        $(".container").height($(window).height()-$(".top").height()-$(".footer").height()).show().siblings(".footer").show();
+    }).resize();
+
+    function showTip(msg){
+        $(".tip").text(msg);
+    }
+
+    function handleSubmit(){
+        //确认
+        var params = {
+            userName : $("#userName").val(),
+            password : $("#password").val()
+        };
+        $("#submit_btn").val("登录中...");
+        jQuery.ajax({
+            type : "POST",
+            url : "$!{rc.contextPath}/login",
+            data : params,
+            cache : false,
+            dataType : "text",
+
+            success:function(data) {
+                var jsonData = eval("(" + data + ")");
+                console.log(jsonData);
+                if(jsonData.status == "200") {
+                    window.location.href="$!{rc.contextPath}/";
+                }else {
+                    showTip(jsonData.message);
+                    $("#submit_btn").val("登录");
+                }
+            }
+        })
+    }
+    $("#submit_btn").on("click", handleSubmit);
+
+    $("form input").on("keyup", function(event){
+        var ev = event||window.event;
+        var keycode = ev.keyCode || ev.which;
+        if(keycode==13){
+            handleSubmit();
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

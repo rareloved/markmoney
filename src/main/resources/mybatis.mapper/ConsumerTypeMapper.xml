@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sjz.markmoney.dao.ConsumerTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.sjz.markmoney.domain.ConsumerType" >
+    <id column="consumer_type" property="consumerType" jdbcType="INTEGER" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    consumer_type, id, type_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from consumerType
+    where consumer_type = #{consumerType,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from consumerType
+    where consumer_type = #{consumerType,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sjz.markmoney.domain.ConsumerType" >
+    insert into consumerType (consumer_type, id, type_name
+      )
+    values (#{consumerType,jdbcType=INTEGER}, #{id,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sjz.markmoney.domain.ConsumerType" >
+    insert into consumerType
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="consumerType != null" >
+        consumer_type,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="consumerType != null" >
+        #{consumerType,jdbcType=INTEGER},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sjz.markmoney.domain.ConsumerType" >
+    update consumerType
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where consumer_type = #{consumerType,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sjz.markmoney.domain.ConsumerType" >
+    update consumerType
+    set id = #{id,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR}
+    where consumer_type = #{consumerType,jdbcType=INTEGER}
+  </update>
+</mapper>

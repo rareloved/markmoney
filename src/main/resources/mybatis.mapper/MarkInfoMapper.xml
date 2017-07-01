@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sjz.markmoney.dao.MarkInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sjz.markmoney.domain.MarkInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="consumer_type" property="consumerType" jdbcType="INTEGER" />
+    <result column="mark_note" property="markNote" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="mark_in_out" property="markInOut" jdbcType="BIT" />
+    <result column="mark_date" property="markDate" jdbcType="TIMESTAMP" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, consumer_type, mark_note, money, mark_in_out, mark_date, create_date, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from markInfo
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getNear10MarkList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from markInfo
+    where userid = #{userId,jdbcType=VARCHAR}
+    ORDER  by create_date DESC
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from markInfo
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sjz.markmoney.domain.MarkInfo" >
+    insert into markInfo (id, userid, consumer_type, 
+      mark_note, money, mark_in_out, 
+      mark_date, create_date, update_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{consumerType,jdbcType=INTEGER}, 
+      #{markNote,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, #{markInOut,jdbcType=BIT}, 
+      #{markDate,jdbcType=TIMESTAMP}, #{createDate,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sjz.markmoney.domain.MarkInfo" >
+    insert into markInfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="consumerType != null" >
+        consumer_type,
+      </if>
+      <if test="markNote != null" >
+        mark_note,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="markInOut != null" >
+        mark_in_out,
+      </if>
+      <if test="markDate != null" >
+        mark_date,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="consumerType != null" >
+        #{consumerType,jdbcType=INTEGER},
+      </if>
+      <if test="markNote != null" >
+        #{markNote,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="markInOut != null" >
+        #{markInOut,jdbcType=BIT},
+      </if>
+      <if test="markDate != null" >
+        #{markDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sjz.markmoney.domain.MarkInfo" >
+    update markInfo
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="consumerType != null" >
+        consumer_type = #{consumerType,jdbcType=INTEGER},
+      </if>
+      <if test="markNote != null" >
+        mark_note = #{markNote,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="markInOut != null" >
+        mark_in_out = #{markInOut,jdbcType=BIT},
+      </if>
+      <if test="markDate != null" >
+        mark_date = #{markDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sjz.markmoney.domain.MarkInfo" >
+    update markInfo
+    set userid = #{userid,jdbcType=VARCHAR},
+      consumer_type = #{consumerType,jdbcType=INTEGER},
+      mark_note = #{markNote,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      mark_in_out = #{markInOut,jdbcType=BIT},
+      mark_date = #{markDate,jdbcType=TIMESTAMP},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

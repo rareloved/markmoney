@@ -1,0 +1,22 @@
+<!-- 公共引用-->
+<meta charset="utf-8">
+<title>hbga</title>
+##<link rel="stylesheet" type="text/css" href="$!{rc.contextPath}/static/css/bootstrap.css">
+##<link rel="stylesheet" type="text/css" href="$!{rc.contextPath}/static/css/style.css">
+##<link rel="stylesheet" type="text/css" href="$!{rc.contextPath}/static/css/page/stylesheet.css">
+<script type="text/javascript" src="$!{rc.contextPath}/static/js/modules/jquery-2.0.0.min.js"></script>
+<script type="text/javascript" src="$!{rc.contextPath}/static/js/common/common.js"></script>
+<script type="text/javascript" src="$!{rc.contextPath}/static/js/modules/Day.js"></script>
+<script>
+    $(function(){
+        jQuery.tabMenu(".tab .tab_title a",".tab .tab_cnt","tab_hover");
+    })
+</script>
+
+###macro(soho3q $data )
+##	#if($data)
+##	    $data
+##    #else
+##    	--
+##    #end
+###end

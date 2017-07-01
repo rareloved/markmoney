@@ -1,0 +1,14 @@
+$(function(){	
+	jQuery.extend({
+		tabMenu:function(tabBar,tabCnt,hoverName){
+			$(tabBar).each(function(i,e){
+				$(e).on("click",function(){					
+					$(tabCnt).hide();
+					$(tabBar).removeClass(hoverName);
+					$(e).addClass(hoverName);
+					$(tabCnt).eq(i).show();
+				});
+			});
+		}		
+	});	
+});

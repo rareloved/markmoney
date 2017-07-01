@@ -1,0 +1,26 @@
+
+
+  <select id="getRequestIdFromSeq" resultType="java.lang.String" >
+    SELECT NB_UKBNOVATION_REQUESTID.NEXTVAL FROM DUAL
+  </select> 
+  
+  String getRequestIdFromSeq();
+  
+  <insert id="insert" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+  	<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+        SELECT NB_UKBNOVCTC_REQUESTID.NEXTVAL FROM DUAL 
+    </selectKey>
+    insert into UKBNOVCTCORDER (ID,REQUESTID, STATUS, 
+      STARTINGDATE, LOSINGBAC, ONEBILLACCOUNT, 
+      GAININGCUGID, GAININGLECODE, GAININGLENAME, 
+      GAININGBACNAME, EFFECTIVEDATE, BILLINGADDRESS
+      )
+    values (#{id,jdbcType=VARCHAR},#{requestid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{startingdate,jdbcType=DATE}, #{losingbac,jdbcType=VARCHAR}, #{onebillaccount,jdbcType=VARCHAR}, 
+      #{gainingcugid,jdbcType=VARCHAR}, #{gaininglecode,jdbcType=VARCHAR}, #{gaininglename,jdbcType=VARCHAR}, 
+      #{gainingbacname,jdbcType=VARCHAR}, #{effectivedate,jdbcType=VARCHAR}, #{billingaddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  
+  

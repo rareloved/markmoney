@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bt.but.ctypechange.mapper.UKBNOVCTCOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="REQUESTID" property="requestid" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="STARTINGDATE" property="startingdate" jdbcType="TIMESTAMP" />
+    <result column="LOSINGBAC" property="losingbac" jdbcType="VARCHAR" />
+    <result column="ONEBILLACCOUNT" property="onebillaccount" jdbcType="VARCHAR" />
+    <result column="GAININGCUGID" property="gainingcugid" jdbcType="VARCHAR" />
+    <result column="GAININGLECODE" property="gaininglecode" jdbcType="VARCHAR" />
+    <result column="GAININGLENAME" property="gaininglename" jdbcType="VARCHAR" />
+    <result column="GAININGBACNAME" property="gainingbacname" jdbcType="VARCHAR" />
+    <result column="EFFECTIVEDATE" property="effectivedate" jdbcType="VARCHAR" />
+    <result column="BILLINGADDRESS" property="billingaddress" jdbcType="VARCHAR" />
+    <result column="TOACCTID" property="toacctid" jdbcType="VARCHAR" />
+    <result column="SERVICEACCOUNTID" property="serviceaccountid" jdbcType="VARCHAR" />
+    <result column="SEQUENCENUMBER" property="sequencenumber" jdbcType="VARCHAR" />
+    <result column="FLOWCODE" property="flowcode" jdbcType="VARCHAR" />
+    <result column="FLOWMESSAGE" property="flowmessage" jdbcType="VARCHAR" />
+    <result column="TOFLOWFNAME" property="toflowfname" jdbcType="VARCHAR" />
+    <result column="TIRGGERBATCHNUM" property="tirggerbatchnum" jdbcType="VARCHAR" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, REQUESTID, STATUS, STARTINGDATE, LOSINGBAC, ONEBILLACCOUNT, GAININGCUGID, GAININGLECODE, 
+    GAININGLENAME, GAININGBACNAME, EFFECTIVEDATE, BILLINGADDRESS, TOACCTID, SERVICEACCOUNTID, 
+    SEQUENCENUMBER, FLOWCODE, FLOWMESSAGE, TOFLOWFNAME, TIRGGERBATCHNUM, UPDATEDATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from UKBNOVCTCORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UKBNOVCTCORDER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from UKBNOVCTCORDER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrderExample" >
+    delete from UKBNOVCTCORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+    insert into UKBNOVCTCORDER (ID, REQUESTID, STATUS, 
+      STARTINGDATE, LOSINGBAC, ONEBILLACCOUNT, 
+      GAININGCUGID, GAININGLECODE, GAININGLENAME, 
+      GAININGBACNAME, EFFECTIVEDATE, BILLINGADDRESS, 
+      TOACCTID, SERVICEACCOUNTID, SEQUENCENUMBER, 
+      FLOWCODE, FLOWMESSAGE, TOFLOWFNAME, 
+      TIRGGERBATCHNUM, UPDATEDATE)
+    values (#{id,jdbcType=VARCHAR}, #{requestid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{startingdate,jdbcType=TIMESTAMP}, #{losingbac,jdbcType=VARCHAR}, #{onebillaccount,jdbcType=VARCHAR}, 
+      #{gainingcugid,jdbcType=VARCHAR}, #{gaininglecode,jdbcType=VARCHAR}, #{gaininglename,jdbcType=VARCHAR}, 
+      #{gainingbacname,jdbcType=VARCHAR}, #{effectivedate,jdbcType=VARCHAR}, #{billingaddress,jdbcType=VARCHAR}, 
+      #{toacctid,jdbcType=VARCHAR}, #{serviceaccountid,jdbcType=VARCHAR}, #{sequencenumber,jdbcType=VARCHAR}, 
+      #{flowcode,jdbcType=VARCHAR}, #{flowmessage,jdbcType=VARCHAR}, #{toflowfname,jdbcType=VARCHAR}, 
+      #{tirggerbatchnum,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+    insert into UKBNOVCTCORDER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="requestid != null" >
+        REQUESTID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="startingdate != null" >
+        STARTINGDATE,
+      </if>
+      <if test="losingbac != null" >
+        LOSINGBAC,
+      </if>
+      <if test="onebillaccount != null" >
+        ONEBILLACCOUNT,
+      </if>
+      <if test="gainingcugid != null" >
+        GAININGCUGID,
+      </if>
+      <if test="gaininglecode != null" >
+        GAININGLECODE,
+      </if>
+      <if test="gaininglename != null" >
+        GAININGLENAME,
+      </if>
+      <if test="gainingbacname != null" >
+        GAININGBACNAME,
+      </if>
+      <if test="effectivedate != null" >
+        EFFECTIVEDATE,
+      </if>
+      <if test="billingaddress != null" >
+        BILLINGADDRESS,
+      </if>
+      <if test="toacctid != null" >
+        TOACCTID,
+      </if>
+      <if test="serviceaccountid != null" >
+        SERVICEACCOUNTID,
+      </if>
+      <if test="sequencenumber != null" >
+        SEQUENCENUMBER,
+      </if>
+      <if test="flowcode != null" >
+        FLOWCODE,
+      </if>
+      <if test="flowmessage != null" >
+        FLOWMESSAGE,
+      </if>
+      <if test="toflowfname != null" >
+        TOFLOWFNAME,
+      </if>
+      <if test="tirggerbatchnum != null" >
+        TIRGGERBATCHNUM,
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="requestid != null" >
+        #{requestid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startingdate != null" >
+        #{startingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="losingbac != null" >
+        #{losingbac,jdbcType=VARCHAR},
+      </if>
+      <if test="onebillaccount != null" >
+        #{onebillaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="gainingcugid != null" >
+        #{gainingcugid,jdbcType=VARCHAR},
+      </if>
+      <if test="gaininglecode != null" >
+        #{gaininglecode,jdbcType=VARCHAR},
+      </if>
+      <if test="gaininglename != null" >
+        #{gaininglename,jdbcType=VARCHAR},
+      </if>
+      <if test="gainingbacname != null" >
+        #{gainingbacname,jdbcType=VARCHAR},
+      </if>
+      <if test="effectivedate != null" >
+        #{effectivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="billingaddress != null" >
+        #{billingaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toacctid != null" >
+        #{toacctid,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceaccountid != null" >
+        #{serviceaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="sequencenumber != null" >
+        #{sequencenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="flowcode != null" >
+        #{flowcode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowmessage != null" >
+        #{flowmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="toflowfname != null" >
+        #{toflowfname,jdbcType=VARCHAR},
+      </if>
+      <if test="tirggerbatchnum != null" >
+        #{tirggerbatchnum,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrderExample" resultType="java.lang.Integer" >
+    select count(*) from UKBNOVCTCORDER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update UKBNOVCTCORDER
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestid != null" >
+        REQUESTID = #{record.requestid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startingdate != null" >
+        STARTINGDATE = #{record.startingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.losingbac != null" >
+        LOSINGBAC = #{record.losingbac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onebillaccount != null" >
+        ONEBILLACCOUNT = #{record.onebillaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gainingcugid != null" >
+        GAININGCUGID = #{record.gainingcugid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gaininglecode != null" >
+        GAININGLECODE = #{record.gaininglecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gaininglename != null" >
+        GAININGLENAME = #{record.gaininglename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gainingbacname != null" >
+        GAININGBACNAME = #{record.gainingbacname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effectivedate != null" >
+        EFFECTIVEDATE = #{record.effectivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billingaddress != null" >
+        BILLINGADDRESS = #{record.billingaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toacctid != null" >
+        TOACCTID = #{record.toacctid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceaccountid != null" >
+        SERVICEACCOUNTID = #{record.serviceaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sequencenumber != null" >
+        SEQUENCENUMBER = #{record.sequencenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowcode != null" >
+        FLOWCODE = #{record.flowcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowmessage != null" >
+        FLOWMESSAGE = #{record.flowmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toflowfname != null" >
+        TOFLOWFNAME = #{record.toflowfname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tirggerbatchnum != null" >
+        TIRGGERBATCHNUM = #{record.tirggerbatchnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedate != null" >
+        UPDATEDATE = #{record.updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update UKBNOVCTCORDER
+    set ID = #{record.id,jdbcType=VARCHAR},
+      REQUESTID = #{record.requestid,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      STARTINGDATE = #{record.startingdate,jdbcType=TIMESTAMP},
+      LOSINGBAC = #{record.losingbac,jdbcType=VARCHAR},
+      ONEBILLACCOUNT = #{record.onebillaccount,jdbcType=VARCHAR},
+      GAININGCUGID = #{record.gainingcugid,jdbcType=VARCHAR},
+      GAININGLECODE = #{record.gaininglecode,jdbcType=VARCHAR},
+      GAININGLENAME = #{record.gaininglename,jdbcType=VARCHAR},
+      GAININGBACNAME = #{record.gainingbacname,jdbcType=VARCHAR},
+      EFFECTIVEDATE = #{record.effectivedate,jdbcType=VARCHAR},
+      BILLINGADDRESS = #{record.billingaddress,jdbcType=VARCHAR},
+      TOACCTID = #{record.toacctid,jdbcType=VARCHAR},
+      SERVICEACCOUNTID = #{record.serviceaccountid,jdbcType=VARCHAR},
+      SEQUENCENUMBER = #{record.sequencenumber,jdbcType=VARCHAR},
+      FLOWCODE = #{record.flowcode,jdbcType=VARCHAR},
+      FLOWMESSAGE = #{record.flowmessage,jdbcType=VARCHAR},
+      TOFLOWFNAME = #{record.toflowfname,jdbcType=VARCHAR},
+      TIRGGERBATCHNUM = #{record.tirggerbatchnum,jdbcType=VARCHAR},
+      UPDATEDATE = #{record.updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+    update UKBNOVCTCORDER
+    <set >
+      <if test="requestid != null" >
+        REQUESTID = #{requestid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startingdate != null" >
+        STARTINGDATE = #{startingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="losingbac != null" >
+        LOSINGBAC = #{losingbac,jdbcType=VARCHAR},
+      </if>
+      <if test="onebillaccount != null" >
+        ONEBILLACCOUNT = #{onebillaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="gainingcugid != null" >
+        GAININGCUGID = #{gainingcugid,jdbcType=VARCHAR},
+      </if>
+      <if test="gaininglecode != null" >
+        GAININGLECODE = #{gaininglecode,jdbcType=VARCHAR},
+      </if>
+      <if test="gaininglename != null" >
+        GAININGLENAME = #{gaininglename,jdbcType=VARCHAR},
+      </if>
+      <if test="gainingbacname != null" >
+        GAININGBACNAME = #{gainingbacname,jdbcType=VARCHAR},
+      </if>
+      <if test="effectivedate != null" >
+        EFFECTIVEDATE = #{effectivedate,jdbcType=VARCHAR},
+      </if>
+      <if test="billingaddress != null" >
+        BILLINGADDRESS = #{billingaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="toacctid != null" >
+        TOACCTID = #{toacctid,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceaccountid != null" >
+        SERVICEACCOUNTID = #{serviceaccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="sequencenumber != null" >
+        SEQUENCENUMBER = #{sequencenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="flowcode != null" >
+        FLOWCODE = #{flowcode,jdbcType=VARCHAR},
+      </if>
+      <if test="flowmessage != null" >
+        FLOWMESSAGE = #{flowmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="toflowfname != null" >
+        TOFLOWFNAME = #{toflowfname,jdbcType=VARCHAR},
+      </if>
+      <if test="tirggerbatchnum != null" >
+        TIRGGERBATCHNUM = #{tirggerbatchnum,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bt.but.ctypechange.mapper.UKBNOVCTCOrder" >
+    update UKBNOVCTCORDER
+    set REQUESTID = #{requestid,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      STARTINGDATE = #{startingdate,jdbcType=TIMESTAMP},
+      LOSINGBAC = #{losingbac,jdbcType=VARCHAR},
+      ONEBILLACCOUNT = #{onebillaccount,jdbcType=VARCHAR},
+      GAININGCUGID = #{gainingcugid,jdbcType=VARCHAR},
+      GAININGLECODE = #{gaininglecode,jdbcType=VARCHAR},
+      GAININGLENAME = #{gaininglename,jdbcType=VARCHAR},
+      GAININGBACNAME = #{gainingbacname,jdbcType=VARCHAR},
+      EFFECTIVEDATE = #{effectivedate,jdbcType=VARCHAR},
+      BILLINGADDRESS = #{billingaddress,jdbcType=VARCHAR},
+      TOACCTID = #{toacctid,jdbcType=VARCHAR},
+      SERVICEACCOUNTID = #{serviceaccountid,jdbcType=VARCHAR},
+      SEQUENCENUMBER = #{sequencenumber,jdbcType=VARCHAR},
+      FLOWCODE = #{flowcode,jdbcType=VARCHAR},
+      FLOWMESSAGE = #{flowmessage,jdbcType=VARCHAR},
+      TOFLOWFNAME = #{toflowfname,jdbcType=VARCHAR},
+      TIRGGERBATCHNUM = #{tirggerbatchnum,jdbcType=VARCHAR},
+      UPDATEDATE = #{updatedate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
